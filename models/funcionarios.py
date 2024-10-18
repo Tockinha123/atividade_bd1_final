@@ -2,4 +2,9 @@ from sqlalchemy import Table, MetaData
 from ..database import engine
 
 metadata = MetaData()
-funcionarios = Table('funcionarios', metadata, autoload_with=engine)
+Funcionarios = Table(
+    'funcionarios',
+    metadata,
+    schema='sistema_medico',
+    autoload_with=engine,
+)
