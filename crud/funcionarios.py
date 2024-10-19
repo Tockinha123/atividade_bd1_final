@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ..database import get_db
 from ..models.funcionarios import Funcionarios
-from ..schemas.funcionarios import FuncionarioSchema, Message
+from ..schemas.funcionarios import FuncionarioSchema
 
 
 def criar_funcionario(

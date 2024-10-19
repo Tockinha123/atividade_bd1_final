@@ -22,5 +22,6 @@ class FuncionarioPublic(BaseModel):
     cargo: CargoFuncionario
     telefone: constr(min_length=11, max_length=11)
 
+
 class Message(BaseModel):
     message: str
