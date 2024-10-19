@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ..database import get_db
 from ..models.funcionarios import Funcionarios
-from ..schemas.funcionarios import FuncionarioSchema
+from ..schemas.funcionarios import FuncionarioSchema, FuncionarioPublic
 
 
 def criar_funcionario(
@@ -18,7 +18,7 @@ def criar_funcionario(
 
     if db_funcionario:
         raise HTTPException(
-            status_code=HTTPStatus.NOT_FOUND,
+            status_code=HTTPStatus.BAD_REQUEST,
             detail='Funcionário já cadastrado no sistema',
         )
 
@@ -38,7 +38,9 @@ def criar_funcionario(
 
 
 def listar_funcionarios(session: Session = Depends(get_db)):
-    return session.select(Funcionarios).all()
+    return session.scalars(
+        select(Funcionarios)
+    )
 
 
 def buscar_funcionario(cpf: str, session: Session = Depends(get_db)):
@@ -57,7 +59,7 @@ def buscar_funcionario(cpf: str, session: Session = Depends(get_db)):
 
 def atualizar_funcionario(
     cpf: str,
-    funcionario: FuncionarioSchema,
+    funcionario: FuncionarioPublic,
     session: Session = Depends(get_db),
 ):
     db_funcionario = session.scalar(

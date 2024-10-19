@@ -35,7 +35,7 @@ def listar_funcionarios(session: Session = Depends(get_db)):
 
 
 @router.get(
-    'buscar_funcionario/{cpf}',
+    '/buscar_funcionario/{cpf}',
     status_code=HTTPStatus.OK,
     response_model=FuncionarioPublic,
 )
@@ -50,7 +50,7 @@ def buscar_funcionario(cpf: str, session: Session = Depends(get_db)):
 )
 def atualizar_funcionario(
     cpf: str,
-    funcionario: FuncionarioSchema,
+    funcionario: FuncionarioPublic,
     session: Session = Depends(get_db),
 ):
     return crud_funcionarios.atualizar_funcionario(cpf, funcionario, session)
@@ -59,7 +59,7 @@ def atualizar_funcionario(
 @router.delete(
     '/deletar_funcionario/{cpf}',
     response_model=Message,
-    status_code=HTTPStatus.NO_CONTENT,
+    status_code=HTTPStatus.OK,
 )
 def deletar_funcionario(cpf: str, session: Session = Depends(get_db)):
     return crud_funcionarios.deletar_funcionario(cpf, session)
