@@ -1,4 +1,5 @@
-from sqlalchemy import Table, MetaData
+from sqlalchemy import MetaData, Table
+
 from ..database import engine
 
 metadata = MetaData()

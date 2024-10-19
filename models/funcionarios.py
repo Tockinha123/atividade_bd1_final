@@ -1,10 +1,11 @@
-from sqlalchemy import Table, MetaData
-from ..database import engine
+from sqlalchemy import MetaData
 
-metadata = MetaData()
-Funcionarios = Table(
-    'funcionarios',
-    metadata,
-    schema='sistema_medico',
-    autoload_with=engine,
-)
+from ..database import Base, engine
+
+metadata_obj = MetaData(schema='sistema_medico')
+metadata_obj.reflect(engine)
+funcionarios = metadata_obj.tables['sistema_medico.funcionarios']
+
+
+class Funcionarios(Base):
+    __table__ = funcionarios
