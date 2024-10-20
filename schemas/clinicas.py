@@ -12,7 +12,7 @@ class ClinicaSchema(BaseModel):
     cep: constr(min_length=8, max_length=8)
     telefone: constr(max_length=15)
     email: EmailStr
-    num_funcionarios: Optional[int]
+    num_funcionarios: Optional[int] = None
 
 
 class ClinicaPublic(BaseModel):
@@ -23,4 +23,4 @@ class ClinicaPublic(BaseModel):
     cep: constr(min_length=8, max_length=8)
     telefone: constr(max_length=15)
     email: EmailStr
-    num_funcionarios: Optional[int]
+    num_funcionarios: Optional[int] = None

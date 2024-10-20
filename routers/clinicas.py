@@ -49,5 +49,10 @@ def atualizar_clinica(
 ):
     return crud_clinicas.atualizar_clinica(cnpj, clinica, session)
 
+@router.delete(
+    '/deletar_clinica',
+    response_model=Message,
+    status_code=HTTPStatus.OK,
+)
 def deletar_clinica(cnpj: str, session: Session = Depends(get_db)):
     return crud_clinicas.deletar_clinica(cnpj, session)

@@ -58,7 +58,15 @@ def atualizar_clinica(
             detail='Clinica não encontrada',
         )
 
-    db_clinica.update(**clinica.model_dump())
+    db_clinica.nome = clinica.nome
+    db_clinica.bairro = clinica.bairro
+    db_clinica.rua = clinica.rua
+    db_clinica.numero = clinica.numero
+    db_clinica.cep = clinica.cep
+    db_clinica.telefone = clinica.telefone
+    db_clinica.email = clinica.email
+    db_clinica.num_funcionarios = clinica.num_funcionarios
+
     session.commit()
     session.refresh(db_clinica)
 
