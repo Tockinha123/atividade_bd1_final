@@ -1,6 +1,11 @@
-from sqlalchemy import MetaData, Table
+from sqlalchemy import MetaData
 
-from ..database import engine
+from ..database import Base, engine
 
-metadata = MetaData()
-Clinicas = Table('clinicas', metadata, autoload_with=engine)
+metadata_obj = MetaData(schema='sistema_medico')
+metadata_obj.reflect(engine)
+clinicas = metadata_obj.tables['sistema_medico.clinicas']
+
+
+class Clinicas(Base):
+    __table__ = clinicas

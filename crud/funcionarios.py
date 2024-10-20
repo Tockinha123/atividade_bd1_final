@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ..database import get_db
 from ..models.funcionarios import Funcionarios
-from ..schemas.funcionarios import FuncionarioSchema, FuncionarioPublic
+from ..schemas.funcionarios import FuncionarioPublic, FuncionarioSchema
 
 
 def criar_funcionario(
@@ -38,9 +38,7 @@ def criar_funcionario(
 
 
 def listar_funcionarios(session: Session = Depends(get_db)):
-    return session.scalars(
-        select(Funcionarios)
-    )
+    return session.scalars(select(Funcionarios))
 
 
 def buscar_funcionario(cpf: str, session: Session = Depends(get_db)):
