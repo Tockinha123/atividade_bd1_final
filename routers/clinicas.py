@@ -10,14 +10,13 @@ from ..schemas.funcionarios import Message
 
 router = APIRouter(prefix='/clinicas', tags=['Clinicas'])
 
+
 @router.post(
     '/criar_clinica',
     response_model=ClinicaSchema,
     status_code=HTTPStatus.CREATED,
 )
-def criar_clinica(
-    clinica: ClinicaSchema, session: Session = Depends(get_db)
-):
+def criar_clinica(clinica: ClinicaSchema, session: Session = Depends(get_db)):
     return crud_clinicas.criar_clinica(clinica, session)
 
 
@@ -29,16 +28,18 @@ def criar_clinica(
 def listar_clinicas(session: Session = Depends(get_db)):
     return crud_clinicas.listar_clinicas(session)
 
+
 @router.get(
-    '/buscar_clinica',
+    '/buscar_clinica/{cnpj}',
     response_model=ClinicaSchema,
     status_code=HTTPStatus.OK,
 )
 def buscar_clinica(cnpj: str, session: Session = Depends(get_db)):
     return crud_clinicas.buscar_clinica(cnpj, session)
 
+
 @router.put(
-    '/atualizar_clinica',
+    '/atualizar_clinica/{cnpj}',
     response_model=ClinicaSchema,
     status_code=HTTPStatus.OK,
 )
@@ -49,8 +50,9 @@ def atualizar_clinica(
 ):
     return crud_clinicas.atualizar_clinica(cnpj, clinica, session)
 
+
 @router.delete(
-    '/deletar_clinica',
+    '/deletar_clinica/{cnpj}',
     response_model=Message,
     status_code=HTTPStatus.OK,
 )
