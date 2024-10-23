@@ -24,7 +24,7 @@ Este repositório contém uma aplicação para gestão de clínicas médicas, de
 ## ⚙️ Como Configurar e Executar o Projeto
 
 ### Pré-requisitos
-- Python 3.10+
+- Python 3.12+
 - PostgreSQL instalado
 - [Poetry](https://python-poetry.org/)
 
